@@ -23,6 +23,6 @@ class ReservationStore(JsonStore):
         """Subimos al almacen los datos"""
         try:
             with open(self._file_name, "w", encoding="utf-8", newline="") as file:
-                json.dump(self.data_list, file, indent=2)
+                json.dump(self._data_list, file, indent=2)
         except FileNotFoundError:
             raise FileNotFoundError("The file doesn't exist")
