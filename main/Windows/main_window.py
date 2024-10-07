@@ -1,6 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
 
+from .register_window import Register_Window
+from .reservar_window import Reservar_Window
+
+
 class Log_Window (tk.Tk):
     def __init__(self):
         super().__init__()
@@ -33,8 +37,15 @@ class Log_Window (tk.Tk):
         password_entry.grid(column=3, row=2, ipadx=5, ipady=5, padx=40, pady=20)
 
         #botones
-        login_button = ttk.Button(main_frame, text="Log-In")#, font = ("Verdana"))
+        login_button = ttk.Button(main_frame, text="Log-In", command=self.log_in)#, font = ("Verdana"))
         login_button.grid(column=3, row=5, ipadx=5, ipady=5, padx=10, pady=10)
 
-        register_button = ttk.Button(main_frame, text="Registrate")#, font = ("Verdana"))
+        register_button = ttk.Button(main_frame, text="Registrate", command=self.registrarse)#,
+        # font = ("Verdana"))
         register_button.grid(column=1, row=5, ipadx=5, ipady=5, padx=10, pady=10)
+    def registrarse(self):
+        self.destroy()
+        Register_Window()
+    def log_in(self):
+        self.destroy()
+        Reservar_Window()
