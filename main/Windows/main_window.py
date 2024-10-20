@@ -36,8 +36,7 @@ class Log_Window (tk.Tk):
         login_button = ttk.Button(main_frame, text="Log-In", command=self.log_in)#, font = ("Verdana"))
         login_button.grid(column=3, row=5, ipadx=5, ipady=5, padx=10, pady=10)
 
-        register_button = ttk.Button(main_frame, text="Registrate", command=self.registrarse)#,
-        # font = ("Verdana"))
+        register_button = ttk.Button(main_frame, text="Register", command=self.registrarse)
         register_button.grid(column=1, row=5, ipadx=5, ipady=5, padx=10, pady=10)
     def registrarse(self):
         self.destroy()

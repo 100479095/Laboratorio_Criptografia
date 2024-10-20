@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from Classes.User import User
 from Store.User_Store import UserStore
+from Windows.main_window import Log_Window
 
 class Register_Window(tk.Tk):
     def __init__(self):
@@ -47,7 +48,7 @@ class Register_Window(tk.Tk):
         creditcard_entry.grid(column=3, row=4, ipadx=5, ipady=5, padx=40, pady=20)
 
         register_user_button = ttk.Button(main_frame, text="Registrate",
-        command=self.register_user(user_name.get(),user_pass.get(),user_full_name.get(),user_creditcard.get()))
+        command=lambda: self.register_user(user_name.get(),user_pass.get(),user_full_name.get(),user_creditcard.get()))
         register_user_button.grid(column=2, row=5, ipadx=5, ipady=5, padx=10, pady=10)
 
     def register_user(self, user_name, password, full_name, credit_card):
@@ -58,3 +59,5 @@ class Register_Window(tk.Tk):
         usuario["creditcard"] = credit_card
         store = UserStore()
         store.register_user(usuario)
+        self.destroy()
+        Log_Window()
