@@ -1,2 +1,3 @@
-import os
-ChaChaKey = os.urandom(32)
+#Sabemos que estos esta mal...
+ChaChaKey = 258498428498408
+ChachaNonce = 25455854871848940984098
