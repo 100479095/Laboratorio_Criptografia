@@ -52,12 +52,9 @@ class Register_Window(tk.Tk):
         register_user_button.grid(column=2, row=5, ipadx=5, ipady=5, padx=10, pady=10)
 
     def register_user(self, user_name, password, full_name, credit_card):
-        usuario = {}
-        usuario["username"] = user_name
-        usuario["password"] = password
-        usuario["full_name"] = full_name
-        usuario["creditcard"] = credit_card
+        usuario = User(user_name, password, full_name, credit_card)
+        encriptado = usuario.user_encrypt()
         store = UserStore()
-        store.register_user(usuario)
+        store.register_user(encriptado)
         self.destroy()
         Log_Window()

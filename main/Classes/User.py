@@ -1,6 +1,6 @@
 import struct, os
-from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from Keys.Key import ChaChaKey as key
+from cryptography.hazmat.primitives.ciphers.aead import ChaCha20Poly1305
+import base64
 
 class User():
     def __init__(self, username, password, name, creditcard):
@@ -9,25 +9,36 @@ class User():
         self.name = name
         self.creditcard = creditcard
 
-    def encrypt(self):
+    def user_encrypt(self):
         #esto es lo que necesitamos para completar el cifrado
+        aad = self.password.encode('utf-8')
+        key = ChaCha20Poly1305.generate_key()
+        #aquí guardaremos los datos cifrados
         user = {}
-        nonce = os.urandom(8)
-        counter =0
-        full_nonce = struct.pack("<Q", counter) + nonce
-        algorithm = algorithms.ChaCha20(key, full_nonce)
-        cipher = Cipher(algorithm, mode=None)
-        encryptor = cipher.encryptor()
-        #ciframos cada uno de los parámetros
-        username = encryptor.update(self.username)
-        password = encryptor.update(self.password)
-        name = encryptor.update(self.name)
-        creditcard = encryptor.update(self.creditcard)
-        #los guardamos en el diccionario y devolvemos el usuario encryptado
-        user['username'] = username
-        user['password'] = password
-        user['name'] = name
-        user['creditcard'] = creditcard
+
+        #ciframos cada uno de los datos, creando el nonce correspondiente
+        username_nonce = os.urandom(12)
+        username = self.encrypt(key, aad, username_nonce, self.username.encode('utf-8'))
+        user['username'] = base64.b64encode(username).decode('utf-8')
+        user['username_nonce'] = base64.b64encode(username_nonce).decode('utf-8')
+
+
+        password_nonce = os.urandom(12)
+        password = self.encrypt(key, aad, password_nonce, self.password.encode('utf-8'))
+        user['password'] = base64.b64encode(password).decode('utf-8')
+        user['password_nonce'] = base64.b64encode(password_nonce).decode('utf-8')
+
+        name_nonce = os.urandom(12)
+        name = self.encrypt(key, aad, name_nonce, self.name.encode('utf-8'))
+        user['name'] = base64.b64encode(name).decode('utf-8')
+        user['name_nonce'] = base64.b64encode(name_nonce).decode('utf-8')
+
+        creditcard_nonce = os.urandom(12)
+        creditcard = self.encrypt(key, aad, creditcard_nonce, self.creditcard.encode('utf-8'))
+        user['creditcard'] = base64.b64encode(creditcard).decode('utf-8')
+        user['creditcard_nonce'] = base64.b64encode(creditcard_nonce).decode('utf-8')
+
         return user
-    def __dict__(self):
-        return self.__dict__()
+    def encrypt(self, key, aad, nonce, dato):
+        chacha = ChaCha20Poly1305(key)
+        return chacha.encrypt(nonce, dato, aad)
