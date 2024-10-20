@@ -46,7 +46,8 @@ class Register_Window(tk.Tk):
         creditcard_entry= tk.Entry(main_frame, textvariable=user_creditcard, font=("Verdana"))
         creditcard_entry.grid(column=3, row=4, ipadx=5, ipady=5, padx=40, pady=20)
 
-        register_user_button = ttk.Button(main_frame, text="Registrate", command=self.register_user(user_name,user_pass,user_full_name,user_creditcard))
+        register_user_button = ttk.Button(main_frame, text="Registrate",
+        command=self.register_user(user_name.get(),user_pass.get(),user_full_name.get(),user_creditcard.get()))
         register_user_button.grid(column=2, row=5, ipadx=5, ipady=5, padx=10, pady=10)
 
     def register_user(self, user_name, password, full_name, credit_card):
