@@ -1,10 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
 
-from .register_window import Register_Window
-from .reservar_window import Reservar_Window
-
-
 class Log_Window (tk.Tk):
     def __init__(self):
         super().__init__()
@@ -45,7 +41,14 @@ class Log_Window (tk.Tk):
         register_button.grid(column=1, row=5, ipadx=5, ipady=5, padx=10, pady=10)
     def registrarse(self):
         self.destroy()
-        Register_Window()
+        self.import_register()
     def log_in(self):
         self.destroy()
+        self.import_reservar()
+
+    def import_register(self):
+        from .register_window import Register_Window
+        Register_Window()
+    def import_reservar(self):
+        from .reservar_window import Reservar_Window
         Reservar_Window()

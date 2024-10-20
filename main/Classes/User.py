@@ -1,6 +1,6 @@
 import struct, os
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from ..Keys.Key import ChaChaKey as key
+from Keys.Key import ChaChaKey as key
 
 class User():
     def __init__(self, username, password, name, creditcard):
@@ -29,3 +29,5 @@ class User():
         user['name'] = name
         user['creditcard'] = creditcard
         return user
+    def __dict__(self):
+        return self.__dict__()

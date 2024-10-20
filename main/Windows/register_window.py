@@ -1,21 +1,23 @@
 import tkinter as tk
 from tkinter import ttk
+from Classes.User import User
+from Store.User_Store import UserStore
 
 class Register_Window(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Register_Window")
-        self.geometry("700x600")
+        self.geometry("780x600")
         self.resizable(False, False)
         self.create_register_window()
 
         self.mainloop()
 
     def create_register_window(self):
-        main_frame = tk.Frame(self, width=700, height=500, bg="lightblue")
+        main_frame = tk.Frame(self, width=800, height=600, bg="lightblue")
         main_frame.pack()
         main_title = tk.Label(main_frame, text="Registrarse", font=("Verdana", 24), bg="darkblue", fg="white")
-        main_title.grid(column=0, row=0, columnspan=5, ipadx=275, ipady=30, padx=0, pady=0)
+        main_title.grid(column=0, row=0, columnspan=5, ipadx=300, ipady=30, padx=0, pady=0)
 
         # Títulos
         username_label = tk.Label(main_frame, text="Nombre de usuario: ", font=("Verdana"))
@@ -44,5 +46,14 @@ class Register_Window(tk.Tk):
         creditcard_entry= tk.Entry(main_frame, textvariable=user_creditcard, font=("Verdana"))
         creditcard_entry.grid(column=3, row=4, ipadx=5, ipady=5, padx=40, pady=20)
 
-        register_button = ttk.Button(main_frame, text="Registrate")#, command=self.log_in)  # , font = ("Verdana"))
-        register_button.grid(column=2, row=5, ipadx=5, ipady=5, padx=10, pady=10)
+        register_user_button = ttk.Button(main_frame, text="Registrate", command=self.register_user(user_name,user_pass,user_full_name,user_creditcard))
+        register_user_button.grid(column=2, row=5, ipadx=5, ipady=5, padx=10, pady=10)
+
+    def register_user(self, user_name, password, full_name, credit_card):
+        usuario = {}
+        usuario["username"] = user_name
+        usuario["password"] = password
+        usuario["full_name"] = full_name
+        usuario["creditcard"] = credit_card
+        store = UserStore()
+        store.register_user(usuario)

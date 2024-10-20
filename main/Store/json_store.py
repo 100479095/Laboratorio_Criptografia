@@ -29,7 +29,7 @@ class JsonStore:
 
     def add_store(self, object):
         """Agregamos a la lista el objeto que queremos guardar"""
-        self._data_list.append(object.__dict__)
+        self._data_list.append(object)
 
     @property
     def data_list(self):

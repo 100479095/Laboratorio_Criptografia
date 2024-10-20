@@ -1,9 +1,9 @@
 import json
-from json_store import JsonStore
-from ..Classes.User import User
+from Store.json_store import JsonStore
+from Classes.User import User
 import struct, os
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from ..Keys.Key import ChaChaKey
+from Keys.Key import ChaChaKey
 
 STORE_NAME= "Users.json"
 class UserStore(JsonStore):
@@ -29,6 +29,7 @@ class UserStore(JsonStore):
         else:
             return None
 
-    def register_user(self, user=User):
-        self.add_store(user.encrypt())
+    def register_user(self, user=dict):
         self.load_store()
+        self.add_store(user)
+        self.save_store()
