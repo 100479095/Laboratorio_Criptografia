@@ -1,3 +1,3 @@
-#Sabemos que estos esta mal...
-ChaChaKey = 258498428498408
-ChachaNonce = 25455854871848940984098
+
+ChaChaKey = b"\xed\xd6ey#x\r3\\\rf\xf0X\x08[\\\xa1\xca\x9bt.\xc9p\xc4\xf2\xad\x0f\t;n\x11\xdc"
+ChaChaNonce = b"\x96\xb3\xe7\xab\xde\x90\xa3\xec3\xb1\xf8T"

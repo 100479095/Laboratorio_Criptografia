@@ -1,6 +1,7 @@
 import struct, os
 from cryptography.hazmat.primitives.ciphers.aead import ChaCha20Poly1305
 import base64
+from Store.Keys_Store import KeysStore
 
 class User():
     def __init__(self, username, password, name, creditcard):
@@ -13,6 +14,8 @@ class User():
         #esto es lo que necesitamos para completar el cifrado
         aad = self.password.encode('utf-8')
         key = ChaCha20Poly1305.generate_key()
+        store = KeysStore()
+        store.key_encryption(self.username, key)
         #aquí guardaremos los datos cifrados
         user = {}
 
