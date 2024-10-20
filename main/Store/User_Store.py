@@ -10,11 +10,11 @@ class UserStore(JsonStore):
 
     def __init__(self):
         super().__init__(STORE_NAME)
+        self.load_store()
 
     def find_user(self, username):
         """"Buscamos en la base de datos al usuario con el username dado y lo devolvemos, de no existir
         devolvemos None"""
-        self.load_store()
         for user in self.data_list:
             if user["username"] == username:
                 return user
@@ -30,6 +30,5 @@ class UserStore(JsonStore):
             return None
 
     def register_user(self, user=dict):
-        self.load_store()
         self.add_store(user)
         self.save_store()
