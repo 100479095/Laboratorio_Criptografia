@@ -12,12 +12,11 @@ class KeysStore(JsonStore):
     def key_encryption(self, username, key):
         from Keys.Key import ChaChaKey
         from Keys.Key import ChaChaNonce
-        username_on_bytes = username.encode('utf-8')
         json_key = {}
 
-        json_username = self.encrypt(ChaChaKey, key, ChaChaNonce, username_on_bytes)
+        cypher_key = self.encrypt(ChaChaKey, None, ChaChaNonce, key)
         json_key['username'] = username
-        json_key['key'] = base64.b64encode(key).decode('utf-8')
+        json_key['key'] = base64.b64encode(cypher_key).decode('utf-8')
 
         self.registration_key(json_key)
     def encrypt(self, key, aad, nonce, dato):
