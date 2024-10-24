@@ -32,7 +32,7 @@ class User():
             r=8,
             p=1
         )
-        user_password = base64.b64encode(self.password.encode())
+        user_password = self.password.encode('utf-8')
         password_token = kdf.derive(user_password)
         user['password_token'] = base64.b64encode(password_token).decode('utf-8')
         user['password_salt'] = base64.b64encode(password_salt).decode('utf-8')

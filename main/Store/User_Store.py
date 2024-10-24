@@ -36,7 +36,8 @@ class UserStore(JsonStore):
             )
             token1 = base64.b64decode(user['password_token'].encode('utf-8'))
             try:
-                kdf.verify(base64.b64decode(password.encode()), token1)
+                kdf.verify(password.encode('utf-8'), token1)
+
             except Exception as e:
                 print("PETÓ")
            #if user["password"] == password:
