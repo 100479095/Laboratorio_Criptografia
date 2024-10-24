@@ -1,20 +1,11 @@
 [
   {
     "username": "a",
-    "password_token": "B2DpChGagd9TqCQEOK6nFDBE6j7HP78MpS6hlTcp/7o=",
-    "password_salt": "Xi+CWbT3OnLOw9Uf",
-    "name": "RAxrdF6Ki1o+ymFWnyqqDIs=",
-    "name_nonce": "9QDLLSlonY38ZKIE",
-    "creditcard": "6zPD9YayJfQhLXLumGG9FHg=",
-    "creditcard_nonce": "+tv2H8RbnTTKk8W5"
-  },
-  {
-    "username": "b",
-    "password_token": "8TR9j3mW771Ashr0XqlC0zK2kiLxJ0LtQsovf7LEVZU=",
-    "password_salt": "sWsxd5UAQRHLnOoj",
-    "name": "SGfhtEOMW3MzjfPFWIpc88c=",
-    "name_nonce": "wU6UsyL1hIZdanmx",
-    "creditcard": "poykMwJJ2hhXGj1FTEuXmpg=",
-    "creditcard_nonce": "7Rh0LDz3CS0VF4Ud"
+    "password_token": "prhBCsj6RZ5wTVDZ3FjZPSG2vMlH4ONrFNQeIzFnSZU=",
+    "password_salt": "G42k7IMlJ5+qFZyr",
+    "name": "tQmI4Ks81aLJKrL652XUiTM=",
+    "name_nonce": "rdyaQQsE7uDTMkZg",
+    "creditcard": "pHTC15Pg/OF4hH9JXDTnEFU=",
+    "creditcard_nonce": "Fe8Y8l+jPHGw4ifJ"
   }
 ]
