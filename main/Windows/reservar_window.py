@@ -1,11 +1,12 @@
 import tkinter as tk
 
 class Reservar_Window(tk.Tk):
-    def __init__(self):
+    def __init__(self, user):
         super().__init__()
         self.title("Register_Window")
         self.geometry("700x500")
         self.resizable(False, False)
+        self.user = user
         self.create_reservar_window()
 
         self.mainloop()

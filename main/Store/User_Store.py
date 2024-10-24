@@ -63,8 +63,7 @@ class UserStore(JsonStore):
         nombre = self.decrypt(key, None, nonce_nombre, nombre_decodificado)
         tarjeta_nonce = base64.b64decode(user["creditcard_nonce"].encode('utf-8'))
         tarjeta = self.decrypt(key, None, tarjeta_nonce, tarjeta_decodificada)
-        print(nombre.decode('utf-8'))
-        print(tarjeta.decode('utf-8'))
+        return User(username, nombre, tarjeta)
     def decrypt(self, key, aad, nonce, dato):
         chacha = ChaCha20Poly1305(key)
         return chacha.decrypt(nonce, dato, aad)

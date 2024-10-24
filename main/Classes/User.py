@@ -5,13 +5,12 @@ import base64
 from Store.Keys_Store import KeysStore
 
 class User():
-    def __init__(self, username, password, name, creditcard):
+    def __init__(self, username, name, creditcard):
         self.username = username
-        self.password = password
         self.name = name
         self.creditcard = creditcard
 
-    def user_encrypt(self):
+    def user_encrypt(self, password):
         #esto es lo que necesitamos para completar el cifrado
         aad = None
         key = ChaCha20Poly1305.generate_key()
@@ -32,7 +31,7 @@ class User():
             r=8,
             p=1
         )
-        user_password = self.password.encode('utf-8')
+        user_password = password.encode('utf-8')
         password_token = kdf.derive(user_password)
         user['password_token'] = base64.b64encode(password_token).decode('utf-8')
         user['password_salt'] = base64.b64encode(password_salt).decode('utf-8')

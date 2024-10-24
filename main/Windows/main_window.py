@@ -7,7 +7,7 @@ class Log_Window (tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Log_Window")
-        self.geometry("700x500")
+        self.geometry("700x360")
         self.resizable(False, False)
         self.main_frame()
 
@@ -48,9 +48,9 @@ class Log_Window (tk.Tk):
         store = UserStore()
         access = store.autenthicate_user(username, password)
         if access == True:
-            store.user_data(username)
+            user = store.user_data(username)
             self.destroy()
-            self.import_reservar()
+            self.import_reservar(user)
         elif access == None:
             messagebox.showerror("Error de autenticación", "El usuario no existe")
         else:
@@ -59,6 +59,6 @@ class Log_Window (tk.Tk):
     def import_register(self):
         from .register_window import Register_Window
         Register_Window()
-    def import_reservar(self):
+    def import_reservar(self, user):
         from .reservar_window import Reservar_Window
-        Reservar_Window()
+        Reservar_Window(user)

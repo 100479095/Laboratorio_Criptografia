@@ -8,7 +8,7 @@ class Register_Window(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Register_Window")
-        self.geometry("780x600")
+        self.geometry("780x560")
         self.resizable(False, False)
         self.create_register_window()
 
@@ -52,8 +52,8 @@ class Register_Window(tk.Tk):
         register_user_button.grid(column=2, row=5, ipadx=5, ipady=5, padx=10, pady=10)
 
     def register_user(self, user_name, password, full_name, credit_card):
-        usuario = User(user_name, password, full_name, credit_card)
-        encriptado = usuario.user_encrypt()
+        usuario = User(user_name, full_name, credit_card)
+        encriptado = usuario.user_encrypt(password)
         store = UserStore()
         store.register_user(encriptado)
         self.destroy()
