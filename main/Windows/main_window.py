@@ -34,8 +34,7 @@ class Log_Window (tk.Tk):
         password_entry.grid(column=3, row=2, ipadx=5, ipady=5, padx=40, pady=20)
 
         #botones
-        login_button = ttk.Button(main_frame, text="Log-In", command=self.log_in(user_name,
-                                                                                 user_pass))#,
+        login_button = ttk.Button(main_frame, text="Log-In", command=lambda:self.log_in(user_name.get(),user_pass.get()))#,
         # font = ("Verdana"))
         login_button.grid(column=3, row=5, ipadx=5, ipady=5, padx=10, pady=10)
 
@@ -45,7 +44,8 @@ class Log_Window (tk.Tk):
         self.destroy()
         self.import_register()
     def log_in(self, username, password):
-        UserStore.autenthicate_user(username.get(), password.get())
+        store = UserStore()
+        store.autenthicate_user(username, password)
         self.destroy()
         self.import_reservar()
 

@@ -26,15 +26,19 @@ class UserStore(JsonStore):
         """"Verificamos si el usuario existe en la base de datos y lo autenticamos con su contraseña"""
         user = self.find_user(username)
         if user is not None:
+            pass_salt = base64.b64decode(user['password_salt'].encode('utf-8'))
             kdf= Scrypt(
-                salt = user["password_salt"],
+                salt = pass_salt,
                 length =32,
                 n= 2**14,
                 r=8,
                 p=1
             )
-            token1 = user["password_token"]
-            kdf.verify(base64.b64decode(password.encode()), token1)
+            token1 = base64.b64decode(user['password_token'].encode('utf-8'))
+            try:
+                kdf.verify(base64.b64decode(password.encode()), token1)
+            except Exception as e:
+                print("PETÓ")
            #if user["password"] == password:
                #return (User(user["username"], user["password"], user["name"], user["creditcard"]))
         #else:
