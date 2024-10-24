@@ -6,7 +6,9 @@ import struct, os
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from Keys.Key import ChaChaKey
 from cryptography.hazmat.primitives.kdf.scrypt import Scrypt
-
+from tkinter import messagebox
+from cryptography.hazmat.primitives.ciphers.aead import ChaCha20Poly1305
+from Store.Keys_Store import KeysStore
 STORE_NAME= "Users.json"
 class UserStore(JsonStore):
 
@@ -38,9 +40,11 @@ class UserStore(JsonStore):
             try:
                 coded_pass = password.encode('utf-8')
                 kdf.verify(coded_pass, token1)
-
+                return True
             except Exception as e:
-                print("PETÓ")
+                return False
+        else:
+            return None
            #if user["password"] == password:
                #return (User(user["username"], user["password"], user["name"], user["creditcard"]))
         #else:
@@ -49,3 +53,18 @@ class UserStore(JsonStore):
     def register_user(self, user=dict):
         self.add_store(user)
         self.save_store()
+    def user_data(self, username):
+        user = self.find_user(username)
+        Store = KeysStore()
+        key = Store.key_decryption(username)
+        nombre_decodificado = base64.b64decode(user['name'].encode('utf-8'))
+        tarjeta_decodificada = base64.b64decode(user['creditcard'].encode('utf-8'))
+        nonce_nombre =  base64.b64decode(user["name_nonce"].encode('utf-8'))
+        nombre = self.decrypt(key, None, nonce_nombre, nombre_decodificado)
+        tarjeta_nonce = base64.b64decode(user["creditcard_nonce"].encode('utf-8'))
+        tarjeta = self.decrypt(key, None, tarjeta_nonce, tarjeta_decodificada)
+        print(nombre.decode('utf-8'))
+        print(tarjeta.decode('utf-8'))
+    def decrypt(self, key, aad, nonce, dato):
+        chacha = ChaCha20Poly1305(key)
+        return chacha.decrypt(nonce, dato, aad)

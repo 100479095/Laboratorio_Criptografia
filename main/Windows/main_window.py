@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 from Store.User_Store import UserStore
 
 class Log_Window (tk.Tk):
@@ -45,9 +46,15 @@ class Log_Window (tk.Tk):
         self.import_register()
     def log_in(self, username, password):
         store = UserStore()
-        store.autenthicate_user(username, password)
-        self.destroy()
-        self.import_reservar()
+        access = store.autenthicate_user(username, password)
+        if access == True:
+            store.user_data(username)
+            self.destroy()
+            self.import_reservar()
+        elif access == None:
+            messagebox.showerror("Error de autenticación", "El usuario no existe")
+        else:
+            messagebox.showerror("Error de autenticación", "contraseña incorrecta")
 
     def import_register(self):
         from .register_window import Register_Window
