@@ -45,10 +45,6 @@ class UserStore(JsonStore):
                 return False
         else:
             return None
-           #if user["password"] == password:
-               #return (User(user["username"], user["password"], user["name"], user["creditcard"]))
-        #else:
-            #return None
 
     def register_user(self, user=dict):
         self.add_store(user)
