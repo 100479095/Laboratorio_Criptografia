@@ -25,7 +25,8 @@ class Reservar_Window(tk.Tk):
         bienvenida_label = tk.Label(main_frame, text=f"Elige la cancha que quieras reservar", font=("Verdana", 24), bg="lightblue",fg="black")
         bienvenida_label.grid(column=0, row=2, columnspan=5,  ipadx=7, ipady=5, padx=50, pady=0)
 
-        cancha_1 = tk.Button(main_frame, text="Cancha 1", font=("Verdana", 20), bg="darkblue", fg="white")
+        cancha_1 = tk.Button(main_frame, text="Cancha 1", font=("Verdana", 20), bg="darkblue", fg="white",
+                             command= lambda:self.horas_reserva(ID=1))
         cancha_1.grid(column=1, row=3, ipadx=5, ipady=7, padx=10, pady=10)
 
         cancha_2 = tk.Button(main_frame, text="Cancha 2", font=("Verdana", 20), bg="darkblue", fg="white")
@@ -36,3 +37,10 @@ class Reservar_Window(tk.Tk):
 
         cancha_4 = tk.Button(main_frame, text="Cancha 4", font=("Verdana", 20), bg="darkblue", fg="white")
         cancha_4.grid(column=2, row=4, ipadx=5, ipady=5, padx=10, pady=10)
+    def horas_reserva(self, ID):
+        self.destroy()
+        self.import_horas(ID)
+
+    def import_horas(self, ID):
+        from .horas_reserva_window import HorasReservaWindow
+        HorasReservaWindow(self.user, ID)

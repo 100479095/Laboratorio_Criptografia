@@ -1,28 +1,24 @@
 import json
-from json_store import JsonStore
+from Store.json_store import JsonStore
 
 STORE_NAME= "Reservations.json"
 class ReservationStore(JsonStore):
 
     def __init__(self):
         super().__init__(STORE_NAME)
+        self.load_store()
 
-    def load_store(self):
-        """ Leo los datos del fichero si existe , y si no existe creo una lista vacia"""
-        try:
-            with open(self._file_name, "r", encoding="utf-8", newline="") as file:
-                self._data_list = json.load(file)
-        except FileNotFoundError:
-            self._data_list = []
-        except json.JSONDecodeError:
-            raise FileNotFoundError("The file doesn't exist")
-
-        return self._data_list
-
-    def save_store(self):
-        """Subimos al almacen los datos"""
-        try:
-            with open(self._file_name, "w", encoding="utf-8", newline="") as file:
-                json.dump(self._data_list, file, indent=2)
-        except FileNotFoundError:
-            raise FileNotFoundError("The file doesn't exist")
+    def find_reserva(self, ID, hora):
+        for user in self.data_list:
+            if user["id"] == ID and user["hora"] == hora:
+                return user
+        return None
+    def reservar(self, ID, hora):
+        reserva = self.find_reserva(ID, hora)
+        if reserva == None:
+            data = {"id": ID, "hora": hora}
+            self.add_store(data)
+            self.save_store()
+            return True
+        else:
+            return False

@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "username": "a",
+    "password_token": "/Gn8jiekuKdMrib6H5IrAusOAeexSjk3WNSdB4CiXdw=",
+    "password_salt": "KiNG+VhS+Qy6O54m",
+    "name": "Y9xgDS7Ra28+PUpuxikxRWE=",
+    "name_nonce": "2FzjfMmp/WLZPD56",
+    "creditcard": "juK3GD/9snYhpzz2wymIRYo=",
+    "creditcard_nonce": "GMz9pGq5JutCUzxx"
+  }
+]
