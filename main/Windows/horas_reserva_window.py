@@ -36,15 +36,19 @@ class HorasReservaWindow(tk.Tk):
 
         hora4_button = tk.Button(main_frame, text="15:00", font=("Verdana", 20), bg="darkblue", fg="white",
                                  command=lambda:self.escoger_reserva(15))
-        hora4_button.grid(column= 0, row= 4, ipadx=5, ipady=7, padx=50, pady=50)
+        hora4_button.grid(column= 0, row= 4, ipadx=5, ipady=7, padx=50, pady=20)
 
         hora5_button = tk.Button(main_frame, text="16:00", font=("Verdana", 20), bg="darkblue", fg="white",
                                  command=lambda:self.escoger_reserva(16))
-        hora5_button.grid(column= 1, row= 4, ipadx=5, ipady=7, padx=50, pady=50)
+        hora5_button.grid(column= 1, row= 4, ipadx=5, ipady=7, padx=50, pady=20)
 
         hora6_button = tk.Button(main_frame, text="17:00", font=("Verdana", 20), bg="darkblue", fg="white",
                                  command=lambda:self.escoger_reserva(17))
-        hora6_button.grid(column= 2, row= 4, ipadx=5, ipady=7, padx=50, pady=50)
+        hora6_button.grid(column= 2, row= 4, ipadx=5, ipady=7, padx=50, pady=20)
+
+        Cancelar_button = tk.Button(main_frame, text="Cancelar", font=("Verdana", 16), bg="darkblue", fg="white",
+                                    command=lambda:self.cancelar())
+        Cancelar_button.grid(column= 2, row= 5, ipadx=0, ipady=4, padx=50, pady=3)
     def escoger_reserva(self, hora):
         from Windows.reservar_window import Reservar_Window
         store = ReservationStore()
@@ -54,6 +58,10 @@ class HorasReservaWindow(tk.Tk):
         else:
             self.destroy()
             Reservar_Window(self.user)
+    def cancelar(self):
+        from Windows.reservar_window import Reservar_Window
+        self.destroy()
+        Reservar_Window(self.user)
 
 
 
