@@ -19,7 +19,7 @@ class User():
         #aquí guardaremos los datos cifrados
         user = {}
 
-        #Dejamos el username en blanco para poder buscar al usuario con mayor facilia
+        #Dejamos el username en blanco para poder buscar al usuario con mayor facilidad
         user['username'] =self.username
 
         #Creamos y guardamos el password_token y el password salt

@@ -1,2 +1,3 @@
 
 ChaChaKey = b"\xed\xd6ey#x\r3\\\rf\xf0X\x08[\\\xa1\xca\x9bt.\xc9p\xc4\xf2\xad\x0f\t;n\x11\xdc"
+Private_Password = b"12345678"
