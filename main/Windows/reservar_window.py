@@ -29,13 +29,16 @@ class Reservar_Window(tk.Tk):
                              command= lambda:self.horas_reserva(ID=1))
         cancha_1.grid(column=1, row=3, ipadx=5, ipady=7, padx=10, pady=10)
 
-        cancha_2 = tk.Button(main_frame, text="Cancha 2", font=("Verdana", 20), bg="darkblue", fg="white")
+        cancha_2 = tk.Button(main_frame, text="Cancha 2", font=("Verdana", 20), bg="darkblue", fg="white",
+                             command= lambda:self.horas_reserva(ID=2))
         cancha_2.grid(column=2, row=3, ipadx=5, ipady=7, padx=10, pady=10)
 
-        cancha_3 = tk.Button(main_frame, text="Cancha 3", font=("Verdana", 20), bg="darkblue", fg="white")
+        cancha_3 = tk.Button(main_frame, text="Cancha 3", font=("Verdana", 20), bg="darkblue", fg="white",
+                             command= lambda:self.horas_reserva(ID=3))
         cancha_3.grid(column=1, row=4, ipadx=5, ipady=5, padx=10, pady=10)
 
-        cancha_4 = tk.Button(main_frame, text="Cancha 4", font=("Verdana", 20), bg="darkblue", fg="white")
+        cancha_4 = tk.Button(main_frame, text="Cancha 4", font=("Verdana", 20), bg="darkblue", fg="white",
+                             command= lambda:self.horas_reserva(ID=4))
         cancha_4.grid(column=2, row=4, ipadx=5, ipady=5, padx=10, pady=10)
     def horas_reserva(self, ID):
         self.destroy()

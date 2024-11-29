@@ -26,19 +26,24 @@ class HorasReservaWindow(tk.Tk):
                                  command=lambda:self.escoger_reserva(12))
         hora1_button.grid(column= 0, row= 3, ipadx=5, ipady=7, padx=50, pady=30)
 
-        hora2_button = tk.Button(main_frame, text="13:00", font=("Verdana", 20), bg="darkblue", fg="white")
+        hora2_button = tk.Button(main_frame, text="13:00", font=("Verdana", 20), bg="darkblue", fg="white",
+                                 command=lambda:self.escoger_reserva(13))
         hora2_button.grid(column=1, row=3, ipadx=5, ipady=7, padx=50, pady=30)
 
-        hora3_button = tk.Button(main_frame, text="14:00", font=("Verdana", 20), bg="darkblue", fg="white")
+        hora3_button = tk.Button(main_frame, text="14:00", font=("Verdana", 20), bg="darkblue", fg="white",
+                                 command=lambda:self.escoger_reserva(14))
         hora3_button.grid(column= 2, row= 3, ipadx=5, ipady=7, padx=50, pady=30)
 
-        hora4_button = tk.Button(main_frame, text="15:00", font=("Verdana", 20), bg="darkblue", fg="white")
+        hora4_button = tk.Button(main_frame, text="15:00", font=("Verdana", 20), bg="darkblue", fg="white",
+                                 command=lambda:self.escoger_reserva(15))
         hora4_button.grid(column= 0, row= 4, ipadx=5, ipady=7, padx=50, pady=50)
 
-        hora5_button = tk.Button(main_frame, text="16:00", font=("Verdana", 20), bg="darkblue", fg="white")
+        hora5_button = tk.Button(main_frame, text="16:00", font=("Verdana", 20), bg="darkblue", fg="white",
+                                 command=lambda:self.escoger_reserva(16))
         hora5_button.grid(column= 1, row= 4, ipadx=5, ipady=7, padx=50, pady=50)
 
-        hora6_button = tk.Button(main_frame, text="17:00", font=("Verdana", 20), bg="darkblue", fg="white")
+        hora6_button = tk.Button(main_frame, text="17:00", font=("Verdana", 20), bg="darkblue", fg="white",
+                                 command=lambda:self.escoger_reserva(17))
         hora6_button.grid(column= 2, row= 4, ipadx=5, ipady=7, padx=50, pady=50)
     def escoger_reserva(self, hora):
         from Windows.reservar_window import Reservar_Window
