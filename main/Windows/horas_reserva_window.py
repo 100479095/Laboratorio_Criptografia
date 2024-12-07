@@ -52,7 +52,7 @@ class HorasReservaWindow(tk.Tk):
     def escoger_reserva(self, hora):
         from Windows.reservar_window import Reservar_Window
         store = ReservationStore()
-        reservado = store.reservar(self.ID, hora)
+        reservado = store.reservar(self.user, self.ID, hora)
         if reservado == False:
             messagebox.showerror("Error de reserva", "Hora no disponible")
         else:
