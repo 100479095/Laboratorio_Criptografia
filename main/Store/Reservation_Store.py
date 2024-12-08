@@ -37,7 +37,7 @@ class ReservationStore(JsonStore):
             data = {"user": user.username,"id": ID, "hora": hora, "user_signature": firma_64}
             self.add_store(data)
             self.save_store()
-            if self.verificar_firma(firma, user, ID, hora):
+            if self.verificar_firma(user, ID, hora):
                 return True
             else:
                 messagebox.showerror("Error de verificación de reserva", "Verificación de firma no válida")
@@ -60,7 +60,7 @@ class ReservationStore(JsonStore):
         )
         return signature
 
-    def verificar_firma(self, firma, user, ID, hora):
+    def verificar_firma(self, user, ID, hora):
         with open(CERTIFICATE_PATH, "rb") as cert_file:
             cert = x509.load_pem_x509_certificate(cert_file.read())
 
@@ -70,6 +70,7 @@ class ReservationStore(JsonStore):
         for usuario in self.data_list:
             if (usuario["user"] == user.username) and (usuario["id"] == ID) and (usuario["hora"] == hora):
                 reserva = True
+                firma = base64.b64decode(usuario["user_signature"].encode('utf-8'))
         if reserva==True:
             message = f"El usuario {user.username} ha reservado la cancha con ID {ID} a las {hora}:00 horas".encode(
                 'utf-8')
